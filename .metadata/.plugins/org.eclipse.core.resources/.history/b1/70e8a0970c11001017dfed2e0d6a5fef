@@ -1,0 +1,27 @@
+package com.railway.bookingservice.entity;
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class WaitingList {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String trainNumber;
+    
+    private LocalDate journeyDate;
+    
+    private Long userId;
+    
+    private int waitingNumber; // WL1, WL2, WL3...
+
+    public WaitingList(String trainNumber, LocalDate journeyDate, Long userId, int waitingNumber) {
+        this.trainNumber = trainNumber;
+        this.journeyDate = journeyDate;
+        this.userId = userId;
+        this.waitingNumber = waitingNumber;
+    }
+}

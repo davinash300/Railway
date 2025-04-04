@@ -1,0 +1,93 @@
+package com.railway.userservice.service;
+
+import com.railway.userservice.dto.UserDTO;
+import com.railway.userservice.entity.User;
+import com.railway.userservice.exception.ResourceNotFoundException;
+import com.railway.userservice.repository.UserRepository;
+import com.railway.userservice.service.UserService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
+    private ModelMapper modelMapper; // Using ModelMapper for DTO conversion
+
+    @Override
+    public User registerUser(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("User with email " + user.getEmail() + " already exists!");
+        }
+        return userRepository.save(user);
+    }
+
+    @Override
+    public UserDTO getUserById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+        return convertToDTO(user);
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDTO updateUser(Long id, User updatedUser) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+
+        user.setName(updatedUser.getName());
+        user.setEmail(updatedUser.getEmail());
+        user.setPhoneNumber(updatedUser.getPhoneNumber());
+        user.setRole(updatedUser.getRole());
+
+        User savedUser = userRepository.save(user);
+        return convertToDTO(savedUser);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new ResourceNotFoundException("User not found with ID: " + id);
+        }
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public UserDTO findByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+        return convertToDTO(user);
+    }
+
+    @Override
+    public UserDTO findByPhoneNumber(String phoneNumber) {
+        User user = userRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with phone number: " + phoneNumber));
+        return convertToDTO(user);
+    }
+
+    // Convert Entity to DTO
+    private UserDTO convertToDTO(User user) {
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    // Convert DTO to Entity
+    private User convertToEntity(UserDTO userDTO) {
+        return modelMapper.map(userDTO, User.class);
+    }
+}

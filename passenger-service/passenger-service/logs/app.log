@@ -1,0 +1,122 @@
+2025-04-04T10:04:34.142+05:30  INFO 18532 --- [passenger-service] [restartedMain] c.r.p.PassengerServiceApplication        : Starting PassengerServiceApplication using Java 22.0.2 with PID 18532 (C:\Users\DAVINASH\Downloads\Railway-Reservasion-System-main\Railway-Reservasion-System-main\passenger-service\passenger-service\target\classes started by davinash in C:\Users\DAVINASH\Downloads\Railway-Reservasion-System-main\Railway-Reservasion-System-main\passenger-service\passenger-service)
+2025-04-04T10:04:34.184+05:30  INFO 18532 --- [passenger-service] [restartedMain] c.r.p.PassengerServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-04-04T10:04:34.320+05:30  INFO 18532 --- [passenger-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-04T10:04:34.323+05:30  INFO 18532 --- [passenger-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-04T10:04:36.157+05:30  INFO 18532 --- [passenger-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-04T10:04:36.466+05:30  INFO 18532 --- [passenger-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 276 ms. Found 1 JPA repository interface.
+2025-04-04T10:04:37.193+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=26585b82-a9c2-379f-9921-0fc69e45f156
+2025-04-04T10:04:38.404+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2025-04-04T10:04:38.438+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-04T10:04:38.438+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-04T10:04:38.576+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-04T10:04:38.577+05:30  INFO 18532 --- [passenger-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4250 ms
+2025-04-04T10:04:39.001+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-04T10:04:39.151+05:30  INFO 18532 --- [passenger-service] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-04T10:04:39.228+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-04T10:04:39.785+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-04T10:04:39.843+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-04T10:04:40.563+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a0addfa
+2025-04-04T10:04:40.568+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-04T10:04:40.670+05:30  WARN 18532 --- [passenger-service] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-04T10:04:40.673+05:30  WARN 18532 --- [passenger-service] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-04T10:04:40.743+05:30  INFO 18532 --- [passenger-service] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-04T10:04:42.226+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-04T10:04:42.296+05:30  INFO 18532 --- [passenger-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-04T10:04:42.969+05:30  WARN 18532 --- [passenger-service] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-04T10:04:43.929+05:30  WARN 18532 --- [passenger-service] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-04-04T10:04:44.064+05:30  INFO 18532 --- [passenger-service] [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2025-04-04T10:04:44.146+05:30  WARN 18532 --- [passenger-service] [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-04-04T10:04:44.196+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2025-04-04T10:04:44.245+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2025-04-04T10:04:44.254+05:30  INFO 18532 --- [passenger-service] [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:04:44.278+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2025-04-04T10:04:44.278+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2025-04-04T10:04:44.278+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2025-04-04T10:04:44.278+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2025-04-04T10:04:44.279+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2025-04-04T10:04:44.279+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2025-04-04T10:04:44.279+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2025-04-04T10:04:44.850+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2025-04-04T10:04:44.853+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2025-04-04T10:04:44.857+05:30  INFO 18532 --- [passenger-service] [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-04-04T10:04:44.860+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1743741284859 with initial instances count: 1
+2025-04-04T10:04:44.866+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application PASSENGER-SERVICE with eureka with status UP
+2025-04-04T10:04:44.867+05:30  INFO 18532 --- [passenger-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1743741284867, current=UP, previous=STARTING]
+2025-04-04T10:04:44.871+05:30  INFO 18532 --- [passenger-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PASSENGER-SERVICE/LIN-5CG95147V7.corp.capgemini.com:passenger-service:8084: registering service...
+2025-04-04T10:04:44.920+05:30  INFO 18532 --- [passenger-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/'
+2025-04-04T10:04:44.922+05:30  INFO 18532 --- [passenger-service] [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8084
+2025-04-04T10:04:44.949+05:30  INFO 18532 --- [passenger-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PASSENGER-SERVICE/LIN-5CG95147V7.corp.capgemini.com:passenger-service:8084 - registration status: 204
+2025-04-04T10:04:44.953+05:30  INFO 18532 --- [passenger-service] [restartedMain] c.r.p.PassengerServiceApplication        : Started PassengerServiceApplication in 11.99 seconds (process running for 13.732)
+2025-04-04T10:09:44.296+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:14:44.310+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:19:44.311+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:24:44.326+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:29:44.343+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:34:44.354+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:39:44.360+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:44:44.364+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T10:49:44.381+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:04:34.753+05:30  WARN 18532 --- [passenger-service] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m23s265ms933µs800ns).
+2025-04-04T11:04:37.631+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:09:37.632+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:14:38.603+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:19:38.636+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:24:38.641+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:29:38.653+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:34:38.662+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:39:38.678+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:44:38.693+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:49:38.698+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:54:38.711+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T11:59:38.728+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:04:38.734+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:09:38.743+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:13:08.901+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-04T12:13:08.911+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-04T12:13:08.954+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 40 ms
+2025-04-04T12:13:09.147+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-1] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T12:13:09.944+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-2] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T12:13:09.978+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-3] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T12:13:10.019+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-4] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T12:13:10.053+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-5] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T12:14:38.758+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:19:38.772+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:28:49.708+05:30  WARN 18532 --- [passenger-service] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m12s265ms810µs).
+2025-04-04T12:30:21.020+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:35:21.120+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:40:21.630+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:45:21.639+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:50:21.645+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T12:55:21.657+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T13:00:21.660+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T13:05:21.666+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T13:06:02.994+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-7] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T13:06:03.027+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-8] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T13:08:32.310+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-10] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T13:08:32.320+05:30  INFO 18532 --- [passenger-service] [http-nio-8084-exec-1] c.r.p.controller.PassengerController     : Fetching passenger details for ID: 1
+2025-04-04T13:53:28.384+05:30  WARN 18532 --- [passenger-service] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=44m37s419ms141µs700ns).
+2025-04-04T13:55:19.860+05:30  WARN 18532 --- [passenger-service] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m51s494ms49µs400ns).
+2025-04-04T13:55:50.589+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T14:00:50.604+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T14:05:50.618+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T14:10:50.634+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T14:15:50.730+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T14:39:19.786+05:30  WARN 18532 --- [passenger-service] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=19m58s787ms731µs400ns).
+2025-04-04T14:40:20.147+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T14:45:20.166+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T14:50:20.267+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T14:55:20.272+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T15:00:20.282+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T15:05:20.296+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T18:04:19.203+05:30  WARN 18532 --- [passenger-service] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h56m28s644ms912µs400ns).
+2025-04-04T18:06:18.915+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T18:11:18.788+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-04-04T19:50:39.865+05:30  WARN 18532 --- [passenger-service] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h36m20s950ms512µs900ns).
+2025-04-04T19:52:09.429+05:30  INFO 18532 --- [passenger-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

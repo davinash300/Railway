@@ -1,0 +1,60 @@
+package com.railway.trainservice.service;
+
+import com.railway.trainservice.dto.SeatAvailabilityDTO;
+import com.railway.trainservice.dto.TrainDTO;
+import com.railway.trainservice.entity.Train;
+import com.railway.trainservice.exception.ResourceNotFoundException;
+import com.railway.trainservice.repository.SeatAvailabilityRepository;
+import com.railway.trainservice.repository.TrainRepository;
+import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class TrainServiceImpl implements TrainService {
+    private static final Logger log = LoggerFactory.getLogger(TrainServiceImpl.class);
+
+    @Autowired
+    private TrainRepository trainRepository;
+
+    @Autowired
+    private SeatAvailabilityRepository seatAvailabilityRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Override
+    public List<TrainDTO> searchTrains(String source, String destination, LocalDate date) {
+        log.info("Fetching trains from database for source: {} and destination: {}", source, destination);
+        List<Train> trains = trainRepository.findBySourceAndDestinationAndDepartureDate(source, destination, date);
+        return trains.stream().map(train -> modelMapper.map(train, TrainDTO.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public TrainDTO getTrainByNumber(String trainNumber) {
+        Train train = trainRepository.findByTrainNumber(trainNumber)
+                .orElseThrow(() -> new ResourceNotFoundException("Train not found with number: " + trainNumber));
+        return modelMapper.map(train, TrainDTO.class);
+    }
+
+    @Override
+    @Transactional
+    public boolean updateAvailableSeats(String trainNumber, LocalDate date, int bookedSeats) {
+        Train train = trainRepository.findByTrainNumberAndDepartureDate(trainNumber, date)
+                .orElseThrow(() -> new ResourceNotFoundException("Train not found"));
+
+        if (train.getAvailableSeats() >= bookedSeats) {
+            train.setAvailableSeats(train.getAvailableSeats() - bookedSeats);
+            trainRepository.save(train);
+            return true;
+        }
+        return false;
+    }
+}

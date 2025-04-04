@@ -1,0 +1,29 @@
+package com.railway.userservice.service;
+
+import com.railway.userservice.dto.UserDTO;
+import com.railway.userservice.entity.User;
+import java.util.List;
+
+public interface UserService {
+    
+    // Register a new user
+    User registerUser(User user);
+    
+    // Get user by ID
+    UserDTO getUserById(Long id);
+    
+    // Get all users
+    List<UserDTO> getAllUsers();
+    
+    // Update user
+    UserDTO updateUser(Long id, User user);
+    
+    // Delete user
+    void deleteUser(Long id);
+    
+    // Search user by email
+    UserDTO findByEmail(String email);
+    
+    // Search user by phone number
+    UserDTO findByPhoneNumber(String phoneNumber);
+}

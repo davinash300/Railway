@@ -1,0 +1,19 @@
+package com.railway.bookingservice.dto;
+
+import lombok.*;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class WaitingListResponseDTO {
+    private Long waitingId;
+    private int waitingNumber;
+    private LocalDate journeyDate;
+
+    private PassengerDTO passenger;
+    private TrainDTO train;
+}

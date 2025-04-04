@@ -1,0 +1,121 @@
+package com.railway.userservice.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.railway.userservice.entity.User;
+
+public interface package com.example.userservice.service.impl;
+
+import com.example.userservice.dto.UserDTO;
+import com.example.userservice.entity.Role;
+import com.example.userservice.entity.User;
+import com.example.userservice.exceptions.ResourceNotFoundException;
+import com.example.userservice.exceptions.UserAlreadyExistsException;
+import com.example.userservice.repository.UserRepository;
+import com.example.userservice.service.UserService;
+import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
+
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, ModelMapper modelMapper) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.modelMapper = modelMapper;
+    }
+
+    /**
+     * Create a new user with encrypted password
+     */
+    @Override
+    public UserDTO createUser(UserDTO userDTO) {
+        if (userRepository.existsByEmail(userDTO.getEmail())) {
+            throw new UserAlreadyExistsException("User with email " + userDTO.getEmail() + " already exists.");
+        }
+
+        User user = modelMapper.map(userDTO, User.class);
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setRole(userDTO.getRole() != null ? userDTO.getRole() : Role.USER);
+
+        User savedUser = userRepository.save(user);
+        return modelMapper.map(savedUser, UserDTO.class);
+    }
+
+    /**
+     * Get user by ID
+     */
+    @Override
+    public UserDTO getUserById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    /**
+     * Get all users
+     */
+    @Override
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Update user details
+     */
+    @Override
+    public UserDTO updateUser(Long id, UserDTO userDTO) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+
+        modelMapper.map(userDTO, user);  // Updating fields
+        User updatedUser = userRepository.save(user);
+        return modelMapper.map(updatedUser, UserDTO.class);
+    }
+
+    /**
+     * Delete user by ID
+     */
+    @Override
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+        userRepository.delete(user);
+    }
+
+    /**
+     * Search user by email
+     */
+    @Override
+    public UserDTO getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    /**
+     * Search user by phone number
+     */
+    @Override
+    public UserDTO getUserByPhoneNumber(String phoneNumber) {
+        User user = userRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with phone number: " + phoneNumber));
+        return modelMapper.map(user, UserDTO.class);
+    }
+}
+ extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+    Optional<User> findByPhoneNumber(String phoneNumber);
+}

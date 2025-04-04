@@ -1,0 +1,102 @@
+package com.railway.userservice.service.impl;
+
+import com.railway.userservice.dto.UserDTO;
+import com.railway.userservice.entity.User;
+import com.railway.userservice.repository.UserRepository;
+import com.railway.userservice.service.UserService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    // ✅ Register a new user
+    @Override
+    public User registerUser(User user) {
+        return userRepository.save(user);
+    }
+
+    // ✅ Get User by ID
+    @Override
+    public UserDTO getUserById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+        return convertToDTO(user);
+    }
+
+    // ✅ Get All Users
+    @Override
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    // ✅ Update User
+    @Override
+    public UserDTO updateUser(Long id, User userDetails) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+
+        user.setName(userDetails.getName());
+        user.setEmail(userDetails.getEmail());
+        user.setPhoneNumber(userDetails.getPhoneNumber());
+        user.setRole(userDetails.getRole());
+
+        User updatedUser = userRepository.save(user);
+        return convertToDTO(updatedUser);
+    }
+
+    // ✅ Delete User
+    @Override
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+        userRepository.delete(user);
+    }
+
+    // ✅ Find User by Email
+    @Override
+    public UserDTO findByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+        return convertToDTO(user);
+    }
+
+    // ✅ Find User by Phone Number
+    @Override
+    public UserDTO findByPhoneNumber(String phoneNumber) {
+        User user = userRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new RuntimeException("User not found with phone number: " + phoneNumber));
+        return convertToDTO(user);
+    }
+
+    // ✅ User Login
+    @Override
+    public UserDTO loginUser(String email, String password) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (user.getPassword().equals(password)) {
+                return convertToDTO(user);
+            }
+        }
+        throw new RuntimeException("Invalid email or password");
+    }
+
+    // ✅ Convert User Entity to DTO
+    private UserDTO convertToDTO(User user) {
+        return modelMapper.map(user, UserDTO.class);
+    }
+}

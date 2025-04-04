@@ -1,0 +1,53 @@
+package com.railway.userservice.controller;
+
+import com.example.userservice.dto.UserDTO;
+import com.example.userservice.entity.User;
+import com.example.userservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/register")
+    public User registerUser(@RequestBody User user) {
+        return userService.registerUser(user);
+    }
+
+    @GetMapping("/{id}")
+    public UserDTO getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
+    @GetMapping
+    public List<UserDTO> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @PutMapping("/{id}")
+    public UserDTO updateUser(@PathVariable Long id, @RequestBody User user) {
+        return userService.updateUser(id, user);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return "User deleted successfully!";
+    }
+
+    @GetMapping("/search/email/{email}")
+    public UserDTO findByEmail(@PathVariable String email) {
+        return userService.findByEmail(email);
+    }
+
+    @GetMapping("/search/phone/{phoneNumber}")
+    public UserDTO findByPhoneNumber(@PathVariable String phoneNumber) {
+        return userService.findByPhoneNumber(phoneNumber);
+    }
+}

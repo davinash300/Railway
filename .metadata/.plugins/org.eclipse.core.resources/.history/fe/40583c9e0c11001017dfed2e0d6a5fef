@@ -1,0 +1,4 @@
+@Repository
+public interface WaitingListRepository extends JpaRepository<WaitingList, Long> {
+    int countByTrainNumberAndJourneyDate(String trainNumber, LocalDate journeyDate);
+}

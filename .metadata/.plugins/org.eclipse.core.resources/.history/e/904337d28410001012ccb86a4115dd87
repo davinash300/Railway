@@ -1,0 +1,120 @@
+package com.railway.bookingservice.service;
+
+import com.railway.bookingservice.client.PassengerServiceClient;
+import com.railway.bookingservice.client.TrainServiceClient;
+import com.railway.bookingservice.dto.*;
+import com.railway.bookingservice.entity.Booking;
+import com.railway.bookingservice.repository.BookingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+
+    private final TrainServiceClient trainServiceClient;
+    private final PassengerServiceClient passengerServiceClient;
+    private final BookingRepository bookingRepository;
+
+    @Autowired
+    public BookingServiceImpl(TrainServiceClient trainServiceClient, PassengerServiceClient passengerServiceClient, BookingRepository bookingRepository) {
+        this.trainServiceClient = trainServiceClient;
+        this.passengerServiceClient = passengerServiceClient;
+        this.bookingRepository = bookingRepository;
+    }
+
+    @Transactional
+    @Override
+    public BookingResponseDTO bookTicket(BookingRequestDTO request) {
+        // Fetch train details
+        TrainDTO train = trainServiceClient.getTrainById(request.getTrainId());
+
+        // Check seat availability
+        if (train.getAvailableSeats() < request.getNumberOfSeats()) {
+            throw new RuntimeException("Not enough seats available!");
+        }
+
+        // Fetch or create passenger
+        PassengerDTO passenger = passengerServiceClient.getPassengerById(request.getPassengerId());
+        if (passenger == null) {
+            throw new RuntimeException("Passenger not found!");
+        }
+
+        // Calculate total fare
+        double totalFare = train.getFare() * request.getNumberOfSeats();
+
+        // Create booking
+        Booking booking = Booking.builder()
+                .passengerId(passenger.getId())
+                .trainId(train.getId())
+                .numberOfSeats(request.getNumberOfSeats())
+                .fare(totalFare)
+                .status("CONFIRMED")
+                .bookingTime(LocalDateTime.now())
+                .build();
+        bookingRepository.save(booking);
+
+        // Update available seats in Train Service
+        trainServiceClient.updateSeats(train.getTrainNumber(), LocalDate.now(), request.getNumberOfSeats());
+
+        return new BookingResponseDTO(booking.getId(), booking.getStatus(), totalFare);
+    }
+
+    @Override
+    public BookingResponseDTO getBookingById(Long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found!"));
+        return new BookingResponseDTO(booking.getId(), booking.getStatus(), booking.getFare());
+    }
+
+    @Override
+    public List<BookingResponseDTO> getAllBookings() {
+        return bookingRepository.findAll().stream()
+                .map(booking -> new BookingResponseDTO(booking.getId(), booking.getStatus(), booking.getFare()))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    @Override
+    public BookingResponseDTO updateBooking(Long bookingId, BookingRequestDTO request) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found!"));
+
+        // Fetch train details
+        TrainDTO train = trainServiceClient.getTrainById(request.getTrainId());
+
+        // Check if enough seats are available
+        if (train.getAvailableSeats() + booking.getNumberOfSeats() < request.getNumberOfSeats()) {
+            throw new RuntimeException("Not enough seats available for update!");
+        }
+
+        // Update train seats
+        trainServiceClient.updateSeats(train.getTrainNumber(), train.getDepartureTime(), request.getNumberOfSeats() - booking.getNumberOfSeats());
+
+        // Update booking details
+        booking.setTrainId(train.getId());
+        booking.setNumberOfSeats(request.getNumberOfSeats());
+        booking.setFare(train.getFare() * request.getNumberOfSeats());
+        bookingRepository.save(booking);
+
+        return new BookingResponseDTO(booking.getId(), booking.getStatus(), booking.getFare());
+    }
+
+    @Transactional
+    @Override
+    public void cancelBooking(Long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found!"));
+
+        // Refund seats to Train Service
+        TrainDTO train = trainServiceClient.getTrainById(booking.getTrainId());
+        trainServiceClient.updateSeats(train.getTrainNumber(), LocalDate.now(), -booking.getNumberOfSeats());
+
+        // Delete booking
+        bookingRepository.delete(booking);
+    }
+}

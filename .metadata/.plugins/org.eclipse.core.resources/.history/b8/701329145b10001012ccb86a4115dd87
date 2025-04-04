@@ -1,0 +1,26 @@
+package com.railway.trainservice.entity;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "seat_availability")
+public class SeatAvailability {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String trainNumber;  // Reference to Train
+
+    @Column(nullable = false)
+    private LocalDate travelDate;  // Specific date for seat availability
+
+    @Column(nullable = false)
+    private int availableSeats;  // Available seats on that date
+
+    // Constructors, Getters, and Setters
+}
+

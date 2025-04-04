@@ -1,0 +1,15 @@
+package com.railway.bookingservice.client;
+
+import com.railway.bookingservice.dto.TrainDTO;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
+
+@FeignClient(name = "train-service", url = "http://localhost:8082/api/trains")
+public interface TrainServiceClient {
+
+    @GetMapping("/{id}")
+    TrainDTO getTrainById(@PathVariable Long id);
+
+    @PutMapping("/{id}/update-seats")
+    void updateSeats(@PathVariable Long id, @RequestParam int availableSeats);
+}

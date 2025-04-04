@@ -1,0 +1,79 @@
+package com.railway.userservice.controller;
+
+import com.railway.userservice.dto.UserDTO;
+import com.railway.userservice.entity.User;
+import com.railway.userservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    // ✅ Register a New User
+    @PostMapping("/register")
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+        User createdUser = userService.registerUser(user);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+    }
+
+    // ✅ Get User by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        UserDTO userDTO = userService.getUserById(id);
+        return ResponseEntity.ok(userDTO);
+    }
+
+    // ✅ Get All Users
+    @GetMapping
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<UserDTO> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    // ✅ Update User by ID
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody User user) {
+        UserDTO updatedUser = userService.updateUser(id, user);
+        return ResponseEntity.ok(updatedUser);
+    }
+
+    // ✅ Delete User by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User deleted successfully!");
+    }
+
+    // ✅ Search User by Email
+    @GetMapping("/search/email/{email}")
+    public ResponseEntity<UserDTO> findByEmail(@PathVariable String email) {
+        UserDTO userDTO = userService.findByEmail(email);
+        return ResponseEntity.ok(userDTO);
+    }
+
+    // ✅ Search User by Phone Number
+    @GetMapping("/search/phone/{phoneNumber}")
+    public ResponseEntity<UserDTO> findByPhoneNumber(@PathVariable String phoneNumber) {
+        UserDTO userDTO = userService.findByPhoneNumber(phoneNumber);
+        return ResponseEntity.ok(userDTO);
+    }
+
+    // ✅ User Login
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody UserDTO loginRequest) {
+        try {
+            UserDTO userDTO = userService.loginUser(loginRequest.getEmail(), loginRequest.getPassword());
+            return ResponseEntity.ok(userDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password.");
+        }
+    }
+}

@@ -1,0 +1,13 @@
+package com.railway.bookingservice.repository;
+
+import java.time.LocalDate;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.railway.bookingservice.entity.WaitingList;
+
+@Repository
+public interface WaitingListRepository extends JpaRepository<WaitingList, Long> {
+    int countByTrainNumberAndJourneyDate(String trainNumber, LocalDate journeyDate);
+}

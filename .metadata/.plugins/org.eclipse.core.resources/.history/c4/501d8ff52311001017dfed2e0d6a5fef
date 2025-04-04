@@ -1,0 +1,16 @@
+package com.railway.bookingservice.service;
+
+import java.util.List;
+
+import com.railway.bookingservice.dto.BookingRequestDTO;
+import com.railway.bookingservice.dto.BookingResponseDTO;
+
+
+public interface BookingService {
+    BookingResponseDTO bookTicket(BookingRequestDTO request);
+    BookingResponseDTO getBookingById(Long bookingId);
+    List<BookingResponseDTO> getAllBookings();
+    BookingResponseDTO updateBooking(Long bookingId, BookingRequestDTO request);
+    void cancelBooking(Long bookingId);
+    
+}
